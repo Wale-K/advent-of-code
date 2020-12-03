@@ -1,26 +1,26 @@
-const fs = require("fs");
+export const countTrees = (right, down) => {
+  const fs = require("fs");
 
-const lines = fs
-  .readFileSync("day3.txt", { encoding: "utf-8" })
-  .split("\n")
-  .filter((x) => x);
+  const lines = fs
+    .readFileSync("day3.txt", { encoding: "utf-8" })
+    .split("\n")
+    .filter((x) => x);
 
-let trees = 0;
-let x = 0; // the x axis coordinate of the forest
+  let trees = 0;
+  let x = 0; // the x axis coordinate of the forest
 
-for (let i = 1; i < lines.length; i++) {
-  x += 3;
-  if (lines[i][x] === "#") {
-    trees++;
+  for (let i = down; i < lines.length; i += down) {
+    x += right;
+    if (lines[i][x] === "#") {
+      trees++;
+    }
+
+    if (x === 30) {
+      x = -1;
+    } else if (x + right > 30) {
+      x = -1 - (30 - x);
+    }
   }
 
-  if (x === 30) {
-    x = -1;
-  } else if (x === 29) {
-    x = -2;
-  } else if (x === 28) {
-    x = -3;
-  }
-}
-
-console.log("trees:", trees);
+  return trees;
+};

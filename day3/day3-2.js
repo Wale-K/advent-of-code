@@ -1,6 +1,11 @@
-const fs = require("fs");
+import { countTrees } from "./day3-1";
 
-const lines = fs
-  .readFileSync("day3.txt", { encoding: "utf-8" })
-  .split("\n")
-  .filter((x) => x);
+const multiplyTrees = () => {
+  return (
+    countTrees(1, 1) *
+    countTrees(3, 1) *
+    countTrees(5, 1) *
+    countTrees(7, 1) *
+    countTrees(1, 2)
+  );
+};
