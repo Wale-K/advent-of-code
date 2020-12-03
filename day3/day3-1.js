@@ -5,32 +5,17 @@ const lines = fs
   .split("\n")
   .filter((x) => x);
 
-// count rows
-// count columns
-// don't try to count both together.
-// simplify things.
-
-// lines       - the entire input
-// lines[0]    - the first line
-// lines[0][1] - the first element in the line.
-
 let trees = 0;
-let x = 3;
-let y = 1;
-let buffer;
+let x = 0; // the x axis coordinate of the forest
 
 for (let i = 1; i < lines.length; i++) {
-  console.log("line:", y, "x:", x, "-->", lines[y][x]);
-
-  if (lines[y][x] === "#") {
+  x += 3;
+  if (lines[i][x] === "#") {
     trees++;
   }
 
-  y++;
-
-  x += 3;
   if (x === 30) {
-    x = 0;
+    x = -1;
   } else if (x === 29) {
     x = -2;
   } else if (x === 28) {
