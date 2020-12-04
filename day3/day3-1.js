@@ -7,7 +7,7 @@ export const countTrees = (right, down) => {
     .filter((x) => x);
 
   let trees = 0;
-  let x = 0; // the x axis coordinate of the forest
+  let x = 0;
 
   for (let i = down; i < lines.length; i += down) {
     x += right;
