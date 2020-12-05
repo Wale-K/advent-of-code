@@ -7,7 +7,6 @@ const lines = fs
 
 let passports = [];
 let validPassports = 0;
-let invalidPassports = 0;
 
 for (let i = 0; i < lines.length; i++) {
   passports.push(lines[i].split(/\n/));
@@ -127,8 +126,6 @@ allPassports.forEach((passport) => {
         }
       }
     }
-  } else {
-    invalidPassports++;
   }
 });
 
