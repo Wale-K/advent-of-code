@@ -1,4 +1,4 @@
-const findMySeat = () => {
+const findSeat = () => {
   const fs = require("fs");
 
   const lines = fs
@@ -11,74 +11,54 @@ const findMySeat = () => {
   let left = 0;
   let right = 7;
   let row = 0;
-  let column = 0;
-  let myId = 0;
-  let ids = [];
   let pastRow = "";
   let pastColumn = "";
+  let column = 0;
+  let ids = [];
+  let highestSeat = 0;
+  let myId = 0;
 
-  for (let i = 0; i < lines.length; i++) {
-    for (let j = 0; j < lines[i].length; j++) {
-      if (lines[i][j] === "B") {
+  lines.forEach((seat) => {
+    seat = seat.split("");
+
+    seat.forEach((data, index) => {
+      if (data === "B") {
         min = max - Math.floor((max - min) / 2);
-        pastRow = "B";
-      } else if (lines[i][j] === "F") {
+        pastRow = data;
+      } else if (data === "F") {
         max = min + Math.floor((max - min) / 2);
-        pastRow = "F";
+        pastRow = data;
       }
 
-      if ((lines[i][j] !== "B") & (lines[i][j] !== "F")) {
-        if (pastRow === "B") {
-          row = max;
-        } else {
-          row = min;
-        }
-      }
-
-      if (lines[i][j] === "L") {
-        right = left + Math.floor((right - left) / 2);
-        pastColumn = "L";
-      } else if (lines[i][j] === "R") {
+      if (data === "R") {
         left = right - Math.floor((right - left) / 2);
-        pastColumn = "R";
+        pastColumn = data;
+      } else if (data === "L") {
+        right = left + Math.floor((right - left) / 2);
+        pastColumn = data;
       }
 
-      if ((lines[i][j] !== "L") & (lines[i][j] !== "R")) {
-        if (pastColumn === "L") {
-          column = left;
-        } else {
-          column = right;
-        }
-      }
-
-      if (j === 9) {
-        if (pastRow === "B" && pastColumn === "L") {
-          ids.push(max * 8 + left);
-        } else if (pastRow === "B" && pastColumn === "R") {
-          ids.push(max * 8 + right);
-        } else if (pastRow === "F" && pastColumn === "L") {
-          ids.push(min * 8 + left);
-        } else {
-          ids.push(min * 8 + right);
-        }
-
+      if (index === 9) {
+        row = pastRow === "B" ? max : min;
+        column = pastColumn === "L" ? left : right;
+        ids.push(row * 8 + column);
+        highestSeat =
+          row * 8 + column > highestSeat ? row * 8 + column : highestSeat;
         min = 0;
         max = 127;
         left = 0;
         right = 7;
+        row = 0;
+        column = 0;
       }
-    }
-  }
-
+    });
+  });
   ids
     .sort((a, b) => a - b)
     .forEach((id, index) => {
-      let nextSeat = ids[index + 1];
-      if (nextSeat - id === 2) {
+      if (ids[index + 1] - id === 2) {
         myId = id + 1;
       }
     });
   return myId;
 };
-
-findMySeat();
