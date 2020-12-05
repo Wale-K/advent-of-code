@@ -1,4 +1,4 @@
-const findSeat = () => {
+const findHighestId = () => {
   const fs = require("fs");
 
   const lines = fs
