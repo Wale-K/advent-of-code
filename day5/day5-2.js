@@ -15,7 +15,6 @@ const findSeat = () => {
   let pastColumn = "";
   let column = 0;
   let ids = [];
-  let highestSeat = 0;
   let myId = 0;
 
   lines.forEach((seat) => {
@@ -42,14 +41,6 @@ const findSeat = () => {
         row = pastRow === "B" ? max : min;
         column = pastColumn === "L" ? left : right;
         ids.push(row * 8 + column);
-        highestSeat =
-          row * 8 + column > highestSeat ? row * 8 + column : highestSeat;
-        min = 0;
-        max = 127;
-        left = 0;
-        right = 7;
-        row = 0;
-        column = 0;
       }
     });
   });
