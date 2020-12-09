@@ -17,27 +17,6 @@ lines.forEach((line) => {
 });
 
 let totalBags = 0;
-let extraColours = [];
-let searchColours = [];
-
-// Object.keys(allBags).forEach(colourKey => {
-
-//   const containsSg = allBags[colourKey].includes("shiny gold");
-//   if (allBags[colourKey]) {
-//     totalBags++;
-//     searchColours.push(colourKey)
-//   }
-// });
-
-// searchColours.forEach(elem => {
-//   const containsElem = allBags[colourKey].includes(elem);
-//   const alreadyHasShinyGold = allBags[colourKey].indexOf("shiny gold") === -1
-//   if (allBags[colourKey] !== null && containsElem && alreadyHasShinyGold) {
-//     totalBags++
-//   }
-// })
-
-// console.log(totalBags)
 
 const countShiny = (arr) => {
   // isolate first argument
