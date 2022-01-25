@@ -13,7 +13,7 @@ let oneCount = 0;
 const limit = lines.length - 1;
 const numLimit = lines[0].length - 1
 
-const oxygen = (array, num, runs) => {
+const oxygen = (array, num) => {
   array.forEach((line) => {
     if (line[num] === "0") {
       zeroCount++;
@@ -45,7 +45,7 @@ const oxygen = (array, num, runs) => {
 return parseInt(leftovers, 2)
 }
 
-const carbon = (array, num, runs) => {
+const carbon = (array, num) => {
   array.forEach((line) => {
     if (line[num] === "0") {
       zeroCount++;
