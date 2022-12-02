@@ -1,3 +1,5 @@
+// UNSOLVED - last attempted 12/2021
+
 const fs = require("fs");
 
 const lines = fs.readFileSync("input.txt", { encoding: "utf-8" }).split("\n");
